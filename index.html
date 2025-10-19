@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reconectar Contigo Mismo - eBook de PNL</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Header */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23ffb74d" opacity="0.1" width="1200" height="600"/><circle cx="200" cy="150" r="100" fill="%23ffa726" opacity="0.2"/><circle cx="800" cy="300" r="150" fill="%23ff9800" opacity="0.1"/><circle cx="1000" cy="450" r="80" fill="%23ffb74d" opacity="0.3"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(255,183,77,0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(255,167,38,0.2) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            background: linear-gradient(45deg, #ffb74d, #ffd54f);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 10px rgba(255, 183, 77, 0.5)); }
+            to { filter: drop-shadow(0 0 20px rgba(255, 183, 77, 0.8)); }
+        }
+        .hero .subtitle {
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            color: #f5f5dc;
+            font-style: italic;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        .hero .description {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            color: #e8e6e3;
+            line-height: 1.8;
+        }
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #4caf50, #81c784);
+            color: white;
+            padding: 20px 50px;
+            font-size: 1.4em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            border: 3px solid #a5d6a7;
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.4);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(76, 175, 80, 0.6);
+            border-color: #c8e6c9;
+        }
+        .price {
+            display: block;
+            margin-top: 20px;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #4caf50;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        /* Exercise Section */
+        .exercise-section {
+            background: rgba(26, 26, 46, 0.95);
+            padding: 80px 0;
+            backdrop-filter: blur(10px);
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.8em;
+            margin-bottom: 60px;
+            color: #ffb74d;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        .exercise-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            border: 2px solid rgba(255, 183, 77, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .exercise-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(255,183,77,0.1) 60deg, transparent 120deg);
+            animation: rotate 4s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+        .exercise-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #ecf0f1;
+            position: relative;
+            z-index: 1;
+        }
+        .exercise-text {
+            color: #bdc3c7;
+            font-size: 1.1em;
+            position: relative;
+            z-index: 1;
+            margin-bottom: 15px;
+        }
+        .audio-player {
+            margin-top: 30px;
+            background: #34495e;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .audio-title {
+            color: #ffb74d;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        .btn-download {
+            display: inline-block;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 12px 28px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(37, 117, 252, 0.3);
+        }
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(37, 117, 252, 0.5);
+        }
+        .audio-instructions {
+            margin-top: 15px;
+            color: #c0c0c0;
+            font-style: italic;
+        }
+        /* Resto de secciones (Features, Included, Testimonials, etc.) */
+        .features {
+            background: rgba(26, 26, 46, 0.95);
+            padding: 80px 0;
+            backdrop-filter: blur(10px);
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.8em;
+            margin-bottom: 60px;
+            color: #ffb74d;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .feature-card {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            border: 2px solid rgba(255, 183, 77, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(255,183,77,0.1) 60deg, transparent 120deg);
+            animation: rotate 4s linear infinite;
+            pointer-events: none;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(255, 183, 77, 0.3);
+        }
+        .feature-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+        .feature-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            color: #ecf0f1;
+            position: relative;
+            z-index: 1;
+        }
+        .feature-card p {
+            color: #bdc3c7;
+            font-size: 1.1em;
+            position: relative;
+            z-index: 1;
+        }
+        /* What's Included */
+        .included {
+            background: linear-gradient(135deg, #8b4513, #a0522d);
+            padding: 80px 0;
+            color: #fff8dc;
+        }
+        .included-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .included-item {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 248, 220, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #ffb74d;
+            transition: transform 0.3s ease;
+        }
+        .included-item:hover {
+            transform: translateX(10px);
+            background: rgba(255, 248, 220, 0.2);
+        }
+        .included-item .icon {
+            font-size: 2.5em;
+            margin-right: 20px;
+            color: #ffd54f;
+        }
+        .included-item .text {
+            flex: 1;
+        }
+        .included-item h4 {
+            font-size: 1.3em;
+            margin-bottom: 8px;
+            color: #fff8dc;
+        }
+        .included-item p {
+            color: #f5deb3;
+            opacity: 0.9;
+        }
+        /* Testimonials */
+        .testimonials {
+            background: rgba(26, 26, 46, 0.98);
+            padding: 80px 0;
+            color: #e8e6e3;
+        }
+        .testimonial-card {
+            background: linear-gradient(135deg, #5d4e75, #8b5a83);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            position: relative;
+            border: 2px solid rgba(255, 183, 77, 0.3);
+        }
+        .testimonial-card::before,
+        .testimonial-card::after {
+            content: '"';
+            font-size: 4em;
+            color: rgba(255, 183, 77, 0.3);
+            position: absolute;
+        }
+        .testimonial-card::before {
+            top: 10px;
+            left: 20px;
+        }
+        .testimonial-card::after {
+            bottom: -20px;
+            right: 20px;
+        }
+        .testimonial-text {
+            font-size: 1.2em;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: #f5f5dc;
+            line-height: 1.6;
+        }
+        .testimonial-author {
+            font-weight: bold;
+            color: #ffb74d;
+        }
+        /* Guarantee */
+        .guarantee {
+            background: linear-gradient(135deg, #2c5530, #3e7b3e);
+            padding: 60px 0;
+            text-align: center;
+            color: #f0f8e7;
+        }
+        .guarantee-badge {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 20px 30px;
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border: 3px solid #81c784;
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.4);
+        }
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255,183,77,0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .purpose-note {
+            background: rgba(76, 175, 80, 0.2);
+            color: #c8e6c9;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            display: inline-block;
+            max-width: 600px;
+            line-height: 1.5;
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .hero .subtitle {
+                font-size: 1.4em;
+            }
+            .hero .description {
+                font-size: 1.1em;
+            }
+            .cta-button {
+                padding: 15px 30px;
+                font-size: 1.2em;
+            }
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .section-title {
+                font-size: 2.2em;
+            }
+        }
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>🧠 Reconectar Contigo Mismo</h1>
+                <p class="subtitle">10 Ejercicios de P.N.L. para volver a ti</p>
+                <p class="description">
+                    Reencuentra el camino de regreso a ti mismo con técnicas de Programación Neurolingüística 
+                    que te devolverán la calma, la claridad y la presencia. <strong>Incluye audios guiados</strong> para cada ejercicio.
+                </p>
+                <a href="#comprar" class="cta-button">
+                    ✨ Comenzar mi regreso
+                    <span class="price">€9.99</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Purpose Note -->
+    <div class="container" style="text-align: center; margin: 30px auto;">
+        <div class="purpose-note">
+            🌱 Precio de lanzamiento con propósito: este valor refleja mi deseo de que este trabajo llegue a quienes más lo necesitan. Mi mayor recompensa es saber que te has sentido acompañado.
+        </div>
+    </div>
+
+    <!-- Exercise Section -->
+    <section class="exercise-section">
+        <div class="container">
+            <h2 class="section-title fade-in">Ejercicio 04: Activar tu mapa de pequeños logros</h2>
+            <div class="exercise-content fade-in">
+                <h3 class="exercise-title">Energia-Motivacional-Ejercico-4</h3>
+                <p class="exercise-text">
+                    Piensa en tres momentos de tu vida en los que lograste algo, aunque pareciera mínimo. Puede ser haber superado un mal día, haber dicho no cuando era difícil o haber terminado una tarea que evitabas.
+                </p>
+                <div class="audio-player">
+                    <p class="audio-title">🎧 Escucha un fragmento del ejercicio guiado</p>
+                    <a href="https://res.cloudinary.com/dldhghawi/video/upload/v1760792619/ejercicio-04-energia-motivacion_2_g9vjvo.mp3" 
+                       class="btn-download" 
+                       download="ejercicio-04-fragmento.mp3">
+                        🎵 Descargar fragmento de audio (MP3)
+                    </a>
+                    <p class="audio-instructions">💡 Recomendación: Usa auriculares en un momento tranquilo para una experiencia más inmersiva.</p>
+                </div>
+                <p class="exercise-text">
+                    Cierra los ojos y visualiza el primer momento. Revive lo que veías, escuchabas y sentías. Hazlo con detalle, como si volvieras allí.
+                </p>
+                <p class="exercise-text">
+                    Ancla esa sensación tocando tu muñeca con dos dedos. Hazlo mientras revives el orgullo, el alivio o la energía de ese logro.
+                </p>
+                <p class="exercise-text">
+                    Repite con los otros dos recuerdos. Refuerza el mismo anclaje (tocar tu muñeca) para asociarlo con el recuerdo de tu fuerza personal.
+                </p>
+                <p class="exercise-text">
+                    Respira profundo, toca tu muñeca de nuevo y visualiza cómo esa energía se expande por tu cuerpo. Observa cómo se activa una chispa, una llama suave que empieza a crecer.
+                </p>
+                <p class="exercise-text">
+                    <strong>Cierre reflexivo:</strong> La motivación no siempre llega sola, pero puede construirse recordando que dentro de ti ya hay pruebas de que puedes. Activa tus logros, no importa cuán pequeños parezcan, son tu mapa de regreso.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title fade-in">✨ ¿Por qué este eBook cambiará tu vida?</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <span class="feature-icon">🎧</span>
+                    <h3>Audios Guiados Incluidos</h3>
+                    <p>Cada ejercicio tiene su audio personalizado para que puedas practicar sin esfuerzo, solo escuchando y siguiendo la guía.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <span class="feature-icon">🧘‍♂️</span>
+                    <h3>Técnicas Probadas de P.N.L.</h3>
+                    <p>10 ejercicios específicos para reconectar con tu mundo interior, basados en Programación Neurolingüística efectiva.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <span class="feature-icon">💻</span>
+                    <h3>Experiencia en tu Ordenador</h3>
+                    <p>Formato interactivo diseñado para practicar en tu computadora, en un entorno tranquilo y sin distracciones.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <span class="feature-icon">⚡</span>
+                    <h3>Resultados Inmediatos</h3>
+                    <p>Desde el primer ejercicio notarás cambios. Técnicas diseñadas para generar bienestar desde la primera sesión.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <span class="feature-icon">🎯</span>
+                    <h3>Enfoque Práctico</h3>
+                    <p>No teoría abstracta. Cada capítulo te lleva paso a paso hacia una transformación real y duradera.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <span class="feature-icon">🌙</span>
+                    <h3>Funciona Online y Offline</h3>
+                    <p>Una vez descargado, puedes usarlo sin conexión a internet. Perfecto para momentos de relajación.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's Included -->
+    <section class="included">
+        <div class="container">
+            <h2 class="section-title fade-in">🎁 Todo lo que recibes al comprar</h2>
+            <div class="included-grid">
+                <div class="included-item fade-in">
+                    <span class="icon">📖</span>
+                    <div class="text">
+                        <h4>eBook Interactivo Completo</h4>
+                        <p>10 capítulos con ejercicios detallados, navegación fluida y diseño profesional</p>
+                    </div>
+                </div>
+                <div class="included-item fade-in">
+                    <span class="icon">🎵</span>
+                    <div class="text">
+                        <h4>10 Audios Guiados Exclusivos</h4>
+                        <p>Cada ejercicio incluye su audio personalizado para máxima efectividad</p>
+                    </div>
+                </div>
+                <div class="included-item fade-in">
+                    <span class="icon">📋</span>
+                    <div class="text">
+                        <h4>Índice Navegable</h4>
+                        <p>Acceso directo a cualquier capítulo con un simple clic</p>
+                    </div>
+                </div>
+                <div class="included-item fade-in">
+                    <span class="icon">🎨</span>
+                    <div class="text">
+                        <h4>Imágenes Ilustrativas</h4>
+                        <p>Visualizaciones que apoyan cada concepto y ejercicio</p>
+                    </div>
+                </div>
+                <div class="included-item fade-in">
+                    <span class="icon">💡</span>
+                    <div class="text">
+                        <h4>Consejos Prácticos</h4>
+                        <p>Recomendaciones específicas para maximizar los resultados de cada técnica</p>
+                    </div>
+                </div>
+                <div class="included-item fade-in">
+                    <span class="icon">🔄</span>
+                    <div class="text">
+                        <h4>Actualizaciones Gratuitas</h4>
+                        <p>Acceso a futuras mejoras y contenido adicional sin costo extra</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title fade-in">💬 Lo que dicen quienes ya lo tienen</h2>
+            <div class="testimonial-card fade-in">
+                <p class="testimonial-text">
+                    "Los audios son increíbles. Poder seguir los ejercicios solo escuchando me ha permitido 
+                    practicar en cualquier momento. He notado cambios reales en mi nivel de ansiedad."
+                </p>
+                <div class="testimonial-author">- María González, Psicóloga</div>
+            </div>
+            <div class="testimonial-card fade-in">
+                <p class="testimonial-text">
+                    "Formato perfecto para mi estilo de vida. Lo uso en mi computadora, en un momento de calma. 
+                    Los ejercicios son prácticos y efectivos. Lo recomiendo 100%."
+                </p>
+                <div class="testimonial-author">- Carlos Ruiz, Empresario</div>
+            </div>
+            <div class="testimonial-card fade-in">
+                <p class="testimonial-text">
+                    "Después de años buscando técnicas que realmente funcionaran, este eBook me ha dado 
+                    herramientas que uso diariamente. La combinación de texto y audio es perfecta."
+                </p>
+                <div class="testimonial-author">- Ana Martín, Coach Personal</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee -->
+    <section class="guarantee">
+        <div class="container fade-in">
+            <div class="guarantee-badge">✅ Garantía de 30 días</div>
+            <h2>Sin riesgos para ti</h2>
+            <p style="font-size: 1.2em; max-width: 600px; margin: 0 auto;">
+                Si en 30 días sientes que esto no te ha aportado calma, claridad o compañía, 
+                te devuelvo cada céntimo. Sin justificaciones. Porque tu bienestar es lo único que importa.
+            </p>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta" id="comprar">
+        <div class="container">
+            <h2 class="fade-in" style="font-size: 2.5em; margin-bottom: 20px;">
+                🌙 Tu regreso comienza aquí
+            </h2>
+            <p class="fade-in" style="font-size: 1.3em; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto;">
+                No necesitas arreglarte. Solo recordar quién eres.  
+                Este es tu primer paso de regreso a ti mismo.
+            </p>
+            <a href="#" class="cta-button fade-in" onclick="window.open('https://alastasair.gumroad.com/l/lgicv', '_blank')">
+                💚 Comprar por €9.99
+            </a>
+            <p class="fade-in" style="margin-top: 30px; color: #bdc3c7;">
+                🔒 Pago seguro | 💻 Descarga en tu ordenador | 🎧 Incluye todos los audios
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
